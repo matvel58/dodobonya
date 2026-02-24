@@ -4,7 +4,11 @@ import { useRef, useState, useCallback } from "react";
 import { motion } from "framer-motion";
 import { HiOutlineBookOpen, HiOutlineUserGroup } from "react-icons/hi";
 
+// Import image so it's bundled into build output (guaranteed on Vercel)
+import heroImg from "@/public/dodobonya-hero.jpg";
+
 const IMG_FALLBACKS = [
+  heroImg.src,
   "/dodobonya-hero.jpg",
   "https://cdn.jsdelivr.net/gh/matvel58/dodobonya@main/public/dodobonya-hero.jpg",
 ];
