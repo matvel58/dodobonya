@@ -42,7 +42,7 @@ export default function Hero() {
           <div className="relative aspect-[4/3] rounded-3xl overflow-hidden border border-white/10 shadow-2xl ring-1 ring-white/5 bg-white/5">
             {!imgError ? (
               <Image
-                src="/dodobonya-hero.png.jfif"
+                src="/dodobonya-hero.jpg"
                 alt="DODOBONYA — a stray dog in the snow, at the heart of the movement"
                 fill
                 className="object-cover"
