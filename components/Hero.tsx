@@ -1,7 +1,6 @@
 "use client";
 
 import { useRef, useState, useCallback } from "react";
-import Image from "next/image";
 import { motion } from "framer-motion";
 import { HiOutlineBookOpen, HiOutlineUserGroup } from "react-icons/hi";
 
@@ -41,14 +40,11 @@ export default function Hero() {
         >
           <div className="relative aspect-[4/3] rounded-3xl overflow-hidden border border-white/10 shadow-2xl ring-1 ring-white/5 bg-white/5">
             {!imgError ? (
-              <Image
+              <img
                 src="/dodobonya-hero.jpg"
                 alt="DODOBONYA — a stray dog in the snow, at the heart of the movement"
-                fill
-                className="object-cover"
-                sizes="(max-width: 768px) 100vw, 50vw"
-                priority
-                unoptimized
+                className="absolute inset-0 w-full h-full object-cover"
+                loading="eager"
                 onError={() => setImgError(true)}
               />
             ) : (
