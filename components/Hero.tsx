@@ -4,12 +4,16 @@ import { useRef, useState, useCallback } from "react";
 import { motion } from "framer-motion";
 import { HiOutlineBookOpen, HiOutlineUserGroup } from "react-icons/hi";
 
+const IMG_FALLBACKS = [
+  "/dodobonya-hero.jpg",
+  "https://cdn.jsdelivr.net/gh/matvel58/dodobonya@main/public/dodobonya-hero.jpg",
+];
+
 export default function Hero() {
   const sectionRef = useRef<HTMLElement>(null);
   const [parallax, setParallax] = useState({ x: 0, y: 0 });
+  const [imgIndex, setImgIndex] = useState(0);
   const [imgError, setImgError] = useState(false);
-  const IMG_SRC =
-    "https://raw.githubusercontent.com/matvel58/dodobonya/main/public/dodobonya-hero.jpg";
 
   const handleMouseMove = useCallback(
     (e: React.MouseEvent<HTMLElement>) => {
@@ -43,11 +47,19 @@ export default function Hero() {
           <div className="relative aspect-[4/3] rounded-3xl overflow-hidden border border-white/10 shadow-2xl ring-1 ring-white/5 bg-white/5">
             {!imgError ? (
               <img
-                src={IMG_SRC}
+                key={imgIndex}
+                src={IMG_FALLBACKS[imgIndex]}
                 alt="DODOBONYA — a stray dog in the snow, at the heart of the movement"
                 className="absolute inset-0 w-full h-full object-cover"
                 loading="eager"
-                onError={() => setImgError(true)}
+                referrerPolicy="no-referrer"
+                onError={() => {
+                  if (imgIndex < IMG_FALLBACKS.length - 1) {
+                    setImgIndex((i) => i + 1);
+                  } else {
+                    setImgError(true);
+                  }
+                }}
               />
             ) : (
               <div className="w-full h-full bg-gradient-to-br from-accent/20 to-accent/5 flex items-center justify-center">
